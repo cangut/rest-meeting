@@ -1,0 +1,9 @@
+server.port=9090
+spring.datasource.driver-class-name = oracle.jdbc.OracleDriver
+spring.datasource.url = jdbc:oracle:thin:@localhost:1521:xe
+spring.datasource.username = MEBITECH
+spring.datasource.password = 123456
+spring.jpa.database-platform = org.hibernate.dialect.Oracle10gDialect
+hibernate.show_sql = true
+hibernate.format_sql = true
+spring.jpa.hibernate.ddl-auto = create

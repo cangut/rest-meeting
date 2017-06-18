@@ -1,0 +1,5 @@
+package tr.com.can.employeemeeting.tools;
+
+public class HibernateUtil {
+
+}

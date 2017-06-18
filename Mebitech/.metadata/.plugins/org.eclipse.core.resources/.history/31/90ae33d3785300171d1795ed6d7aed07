@@ -1,0 +1,66 @@
+package tr.com.can.employeemeeting.entities;
+
+import java.io.Serializable;
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="EMPLOYEE")
+@AttributeOverride(name = "id", column = @Column(name = "E_ID", table = "EMPLOYEE"))
+@SequenceGenerator(initialValue=1, name="idgen", sequenceName="EMP_SEQ")
+public class Employee extends BaseEntity implements Serializable{
+	
+
+	private static final long serialVersionUID = 1L;
+
+	@Column(name="E_NAME")
+	private String name;
+	
+	@Column(name="E_SURNAME")
+	private String surname;
+	
+	@Column(name="E_SALARY")
+	private Double salary;
+	
+	private Department department;
+	
+	public Employee() {}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSurname() {
+		return surname;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public Double getSalary() {
+		return salary;
+	}
+
+	public void setSalary(Double salary) {
+		this.salary = salary;
+	}
+
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+	
+	
+}

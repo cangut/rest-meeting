@@ -1,0 +1,66 @@
+package tr.com.can.employeemeeting.manage;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import tr.com.can.employeemeeting.daos.DepartmentDAO;
+import tr.com.can.employeemeeting.daos.EmployeeDAO;
+import tr.com.can.employeemeeting.daos.MeetingDAO;
+import tr.com.can.employeemeeting.entities.Department;
+import tr.com.can.employeemeeting.entities.Employee;
+import tr.com.can.employeemeeting.entities.Meeting;
+
+public class Manage {
+
+	public static void main(String[] args) {
+		
+		List<Employee> elist = new ArrayList<Employee>(); 
+		List<Employee> alist = new ArrayList<Employee>();
+		List<Department> dlist = new ArrayList<Department>();
+		
+		
+		
+		Department d = new Department();
+		d.setName("Engineering");
+		d.setDescription("Software Engineering");
+		
+		
+		Department d1 = new Department();
+		d1.setName("Accounting");
+		d1.setDescription("for Accountants");
+		
+		dlist.add(d);
+		dlist.add(d1);
+		
+		Meeting m = new Meeting();
+		m.setDescription("Oracle");
+		m.setName("Oracle Meeting");
+		m.setDepartment(dlist);
+		
+		Employee e2 = new Employee();
+		e2.setName("Ali");
+		e2.setSurname("Cam");
+		e2.setSalary(12.000);
+		e2.setDepartment(d1);
+	
+		
+		Employee e = new Employee();
+		e.setName("Can");
+		e.setSurname("Güt");
+		e.setSalary(12.000);
+		e.setDepartment(d);
+		
+		
+		Employee e1 = new Employee();
+		e1.setName("Osman");
+		e1.setSurname("Kara");
+		e1.setSalary(12.000);
+		e1.setDepartment(d);
+		
+		new DepartmentDAO().create(d1);
+		new DepartmentDAO().create(d);
+		new EmployeeDAO().create(e2);
+		new MeetingDAO().create(m);
+	}
+
+}

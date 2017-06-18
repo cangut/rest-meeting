@@ -1,0 +1,59 @@
+package tr.com.can.employeemeeting.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import tr.com.can.employeemeeting.entities.Meeting;
+import tr.com.can.employeemeeting.services.MeetingService;
+
+@RestController
+public class MeetingController {
+
+	@Autowired
+	private MeetingService mService;
+
+	@GetMapping("/meetings")
+	public ResponseEntity<List<Meeting>> getMeetings(){
+		List<Meeting> meetings = this.mService.listAll();
+		return new ResponseEntity<List<Meeting>>(meetings, HttpStatus.OK);
+	}
+
+	@GetMapping("/meetings/{id}")
+	public ResponseEntity<Meeting> getMeetingById(@PathVariable("id") Integer id){
+		Meeting meeting = this.mService.findById(id);
+
+		if (meeting == null) {
+			return new ResponseEntity<Meeting>(HttpStatus.NOT_FOUND);
+		}else{
+			return new ResponseEntity<Meeting>(meeting,HttpStatus.OK);
+		}
+	}
+
+	@PostMapping(value = "/meetings")
+	public ResponseEntity<Meeting> addMeeting(@RequestBody Meeting m) {
+		this.mService.saveMeeting(m);
+		return new ResponseEntity<Meeting>(m, HttpStatus.CREATED);
+	}
+
+	@PutMapping(value = "/meeting/{id}")
+	public ResponseEntity<Meeting> updateMeeting(@PathVariable Integer id, @RequestBody Meeting m){
+		this.mService.updateMeeting(m);
+		return new ResponseEntity<Meeting>(m,HttpStatus.OK);
+	}
+
+	@DeleteMapping(value = "/meetings/{id}")
+	public ResponseEntity<Void> deleteMeeting(@PathVariable("id") Integer id) {
+		this.mService.deleteById(id);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}    
+}
