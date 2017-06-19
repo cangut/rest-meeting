@@ -36,8 +36,7 @@ public class Meeting extends BaseEntity implements Serializable{
 	private String description;
 
 
-   // @ManyToMany(fetch=FetchType.EAGER, mappedBy="meetingList")
-	//@Fetch(value = FetchMode.SELECT)
+   
 	@ManyToMany(cascade = CascadeType.REFRESH, fetch = EAGER)
 	@JoinTable(name = "MEETING_DEPARTMENT", 
 			   joinColumns = { @JoinColumn(name = "MEETING_ID") }, 
